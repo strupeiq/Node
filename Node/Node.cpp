@@ -81,19 +81,22 @@ void reverse(Node*& head) {
 	head = new_head;
 }
 
-void merge_1(Node*& first, Node* second, Node*& head) {
-	Node*& third = new Node;
-	Node* new_head_1 = nullptr;
-	Node* new_head_2 = nullptr;
-	Node* new_head_3 = nullptr;
-	third->value = first->value + second->value;
-	third->next = head;
-	first->next = head;
-	second->next = head;
-	for (int i = 0; i < first->value + second->value; ++i) {
-		if (first->next > second->next) {
-			third->next = second->next;
-			new_head_2 = second->next;
+Node* merge(Node* first, Node* second) {
+	Node* ans = new Node;
+	Node* it = ans;
+
+	while (first || second) {
+		if (first && (!second || first->value < second->value)) {
+			it->value = first->value;
+			first = first->next;
 		}
+		else {
+			it->value = second->value;
+			second = second->next;
+		}
+		it->next = (first || second ? new Node : nullptr);
+		it = it->next;
 	}
+
+	return ans;
 }
