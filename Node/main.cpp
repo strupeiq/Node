@@ -11,10 +11,6 @@ int main() {
 		push_back(i, head);
 	}
 
-	for (int i = 1; i <= 40; ++i) {
-		reverse(head);
-	}
-
 	/*Node* thirty_three = find(head, 33);
 	remove(head, thirty_three);              //Удаление элемента
 	*/
